@@ -1,0 +1,4 @@
+﻿orderid,productid,paymentid,fulfilledbyemployeeid,daterequired,dateshipped,status
+1,1,1,2,2018-05-09,,Not shipped
+2,1,2,2,2018-04-09,2018-03-09,Shipped
+3,3,3,3,2018-06-09,,Not shipped
