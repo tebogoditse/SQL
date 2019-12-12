@@ -6,7 +6,7 @@ CREATE DATABASE Umuzi
 
 //Customer Table
 create table Customers(
-customer_id INT SERIAL PRIMARY KEY,
+customerID SERIAL PRIMARY KEY,
 FirstName VARCHAR (50),
 LastName VARCHAR (50),
 Gender VARCHAR,
@@ -18,7 +18,7 @@ Country VARCHAR (50)
 );
 
 //Inserting values into table
-INSERT INTO Customers(customerID, FirstName, LastName, Gender, Address, Phone, Email, City, Country)
+INSERT INTO Customers(FirstName, LastName, Gender, Address, Phone, Email, City, Country)
 VALUES('John', 'Hibert', 'Male', '284 chaucer st', 084789657, 'john@gmail.com', 'Johannesburg', 'South Africa');
 INSERT INTO Customers(FirstName, LastName, Gender, Address, Phone, Email, City, Country)
 VALUES('Thando', 'Sithole', 'Female', '240 Sect 1', 0794445584, 'thando@gmail.com', 'Cape Town', 'South Africa');
@@ -92,16 +92,16 @@ VALUES (4, '2018-09-03' ,700.60);
 CREATE TABLE Products(
     ProductId serial PRIMARY KEY NOT NULL,
     ProductName VARCHAR (100),
-    Desrciption VARCHAR (300),
+    Description VARCHAR (300),
     BuyPrice NUMERIC NOT NULL
 )
 
 //Inserting values into table
-INSERT INTO Products(ProductName, Desrciption, BuyPrice)
+INSERT INTO Products(ProductName, Description, BuyPrice)
 VALUES ('Harley Davidson Chopper', 'This replica features working kickstand, front suspension, gear-shift lever',150.75);
-INSERT INTO Products(ProductName, Desrciption, BuyPrice)
+INSERT INTO Products(ProductName, Description, BuyPrice)
 VALUES ('Classic Car','Turnable front wheels, steering function',550.75);
-INSERT INTO Products(ProductName, Desrciption, BuyPrice)
+INSERT INTO Products(ProductName, Description, BuyPrice)
 VALUES ('Sports car','Turnable front wheels, steering function',700.60);
 ---------------------------------------------------------------------------------------------------------------------------
 
