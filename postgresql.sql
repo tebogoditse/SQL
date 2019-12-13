@@ -1,10 +1,10 @@
-//Creating database
+--Creating database
 
 CREATE DATABASE Umuzi
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-//Customer Table
+--Customer Table
 create table Customers(
 customerID SERIAL PRIMARY KEY,
 FirstName VARCHAR (50),
@@ -17,7 +17,7 @@ City VARCHAR (20),
 Country VARCHAR (50)
 );
 
-//Inserting values into table
+--Inserting values into table
 INSERT INTO Customers(FirstName, LastName, Gender, Address, Phone, Email, City, Country)
 VALUES('John', 'Hibert', 'Male', '284 chaucer st', 084789657, 'john@gmail.com', 'Johannesburg', 'South Africa');
 INSERT INTO Customers(FirstName, LastName, Gender, Address, Phone, Email, City, Country)
@@ -31,7 +31,7 @@ VALUES('Julia', 'Stein', 'Female', '2 Wernerring', +448672445058, 'Js234@yahoo.c
 
 ---------------------------------------------------------------------------------------------------------------------------
 
-//Employees Table
+--Employees Table
 CREATE TABLE Employees(
 EmployeeID serial PRIMARY KEY,
 FirstName VARCHAR (50) NOT NULL,
@@ -40,7 +40,7 @@ Email VARCHAR (100) NOT NULL,
 JobTitle VARCHAR (20) NOT NULL
 );
 
-//Inserting values into table
+--Inserting values into table
 INSERT INTO Employees(FirstName, LastName, Email, JobTitle)
 VALUES ('Kani','Matthew','mat@gmail.com','Manager');
 INSERT INTO Employees(FirstName, LastName, Email, JobTitle)
@@ -49,29 +49,7 @@ INSERT INTO Employees(FirstName, LastName, Email, JobTitle)
 VALUES ('Gideon','Maduku','m@gmail.com','Accountant');
 ----------------------------------------------------------------------------------------------------------------------------
 
-//Orders Table
-CREATE TABLE Orders (
-    OrderID SERIAL,
-    ProductID INT NOT NULL,
-    PaymentID SERIAL,
-    FulfilledByEmployeeID INT NOT NULL,
-    DateRequired DATE NOT NULL,
-    DateShipped DATE,
-    status VARCHAR(20),
-    PRIMARY KEY (OrderID, PaymentID)
-)
-
-//Inserting values in the table
-
-INSERT INTO Orders (ProductID,FulfilledByEmployeeID,DateRequired ,DateShipped,status)
-VALUES (1,2,'05-09-2018', NULL,'Not shipped');
-INSERT INTO Orders (ProductID,FulfilledByEmployeeID,DateRequired ,DateShipped,status)
-VALUES (1,2,'04-09-2018','03-09-2018','Shipped');
-INSERT INTO Orders (ProductID,FulfilledByEmployeeID,DateRequired ,DateShipped,status)
-VALUES (3,3,'06-09-2018', NULL,'Not shipped');
-----------------------------------------------------------------------------------------------------------------------------
-
-//Payments
+--Payments
 CREATE TABLE Payments(
    CustomerID     INT        REFERENCES Customers(CustomerID),
    PaymentID      SERIAL     PRIMARY KEY,
@@ -79,7 +57,7 @@ CREATE TABLE Payments(
    Amount         NUMERIC    NOT NULL
 );
 
-//Inserting values into table
+--Inserting values into table
 INSERT INTO Payments(CustomerId, PaymentDate, Amount)
 VALUES (1, '2018-09-01', 150.75);
 INSERT INTO Payments(CustomerId, PaymentDate, Amount)
@@ -88,7 +66,7 @@ INSERT INTO Payments(CustomerId, PaymentDate, Amount)
 VALUES (4, '2018-09-03' ,700.60);
 ---------------------------------------------------------------------------------------------------------------------------
 
-//Products Table
+--Products Table
 CREATE TABLE Products(
     ProductId serial PRIMARY KEY NOT NULL,
     ProductName VARCHAR (100),
@@ -96,7 +74,7 @@ CREATE TABLE Products(
     BuyPrice NUMERIC NOT NULL
 )
 
-//Inserting values into table
+--Inserting values into table
 INSERT INTO Products(ProductName, Description, BuyPrice)
 VALUES ('Harley Davidson Chopper', 'This replica features working kickstand, front suspension, gear-shift lever',150.75);
 INSERT INTO Products(ProductName, Description, BuyPrice)
@@ -105,6 +83,26 @@ INSERT INTO Products(ProductName, Description, BuyPrice)
 VALUES ('Sports car','Turnable front wheels, steering function',700.60);
 ---------------------------------------------------------------------------------------------------------------------------
 
+--Orders Table
+
+CREATE TABLE Orders (
+    OrderID SERIAL PRIMARY KEY,
+    ProductID INTEGER REFERENCES Products(ProductID),
+    PaymentID INTEGER REFERENCES Payments(PaymentID),
+    FulfilledByEmployeeID INTEGER REFERENCES Employees(EmployeeID),
+    DateRequired DATE NOT NULL,
+    DateShipped DATE,
+    status VARCHAR(20)
+);
+--Inserting values in the table
+
+INSERT INTO Orders (ProductID,FulfilledByEmployeeID,DateRequired ,DateShipped,status)
+VALUES (1,2,'05-09-2018', NULL,'Not shipped');
+INSERT INTO Orders (ProductID,FulfilledByEmployeeID,DateRequired ,DateShipped,status)
+VALUES (1,2,'04-09-2018','03-09-2018','Shipped');
+INSERT INTO Orders (ProductID,FulfilledByEmployeeID,DateRequired ,DateShipped,status)
+VALUES (3,3,'06-09-2018', NULL,'Not shipped');
+----------------------------------------------------------------------------------------------------------------------------
 
 PART 2
 
